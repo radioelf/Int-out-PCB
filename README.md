@@ -1,4 +1,4 @@
-# Int-out-PCB
+# In-out-PCB
 PCB for control of 8 inputs, 2 dimmers and 8 relay outputs 
 
 Kicad Application:
