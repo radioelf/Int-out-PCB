@@ -1,4 +1,4 @@
-(kicad_sch (version 20230121) (generator eeschema)
+(kicad_sch (version 20230221) (generator eeschema)
 
   (uuid e63e39d7-6ac0-4ffd-8aa3-1841a4541b55)
 
@@ -5609,7 +5609,7 @@
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Footprint" "Relay_THT:Relay_HF49FDxxx-1h1" (at 59.69 110.49 0)
-      (effects (font (size 1.27 1.27)) (justify left) hide)
+      (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Datasheet" "" (at 50.8 109.22 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -6762,13 +6762,13 @@
     )
   )
 
-  (symbol (lib_id "Regulator_Linear:LM1117-3.3") (at 229.87 43.18 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+  (symbol (lib_id "Regulator_Linear:LM1117-3.3") (at 229.87 43.18 0) (mirror y) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
     (uuid 82c38feb-81d2-4ea2-9899-b684207594af)
-    (property "Reference" "U5" (at 229.87 37.3085 0)
+    (property "Reference" "U5" (at 229.87 38.862 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Value" "LM1117-3.3" (at 229.87 40.0836 0)
+    (property "Value" "LM1117-3.3" (at 229.87 36.322 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Footprint" "Package_TO_SOT_SMD:SOT-223-3_TabPin2" (at 229.87 43.18 0)
