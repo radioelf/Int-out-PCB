@@ -1,0 +1,203 @@
+# https://github.com/mhendriks/esphome-p1/blob/main/eth-dongle-pro.yaml
+esphome:
+  name: eth-w5500
+  comment: ethernet Reles 
+  platformio_options:
+    upload_speed: 1500000
+    board_build.flash_mode: dio
+    
+  project: 
+    name: "smartstuff.eth_dongle_pro"
+    version: ${prj_version}
+
+esp32:
+  board: nodemcu-32s
+# incluir componentes adicionales en tu proyecto
+external_components:
+  - source: github://mhendriks/esphome-p1/blob/main/my_components/ethernet/
+    components: [ ethernet ]
+      
+ethernet:
+  type: W5500
+  clock_speed: 25
+  clk_pin: GPIO18
+  mosi_pin: GPIO23
+  miso_pin: GPIO19
+  cs_pin: GPIO5
+  interrupt_pin: GPIO4
+  manual_ip:
+    static_ip: 192.168.0.77
+    gateway: 192.168.0.5
+    subnet: 255.255.255.0
+      
+# importar y utilizar un paquete de configuración personalizado desde un repositorio externo
+#dashboard_import:
+#  package_import_url: github://mhendriks/esphome-p1/eth-dongle-pro.yaml@main
+ota:
+
+web_server:
+
+# Enable logging
+logger:
+  level: DEBUG
+# Enable Home Assistant API
+api:
+  
+button:  
+  - platform: restart
+    name: "Reiniciar"
+    id: reboot
+  - platform: factory_reset
+    name: "Reiniciar defecto de fabrica"
+text_sensor:
+  - platform: ethernet_info
+    ip_address:
+      name: ESP IP
+# Salidas relés
+switch:
+  # Relés 1-8 
+  - platform: gpio
+    name: Relay 1
+    id: relay_1
+    pin:
+      number: GPIO17
+  - platform: gpio
+    name: Relay 2
+    id: relay_2
+    pin: 
+      number: GPIO21
+  - platform: gpio
+    name: Relay 3
+    id: relay_3
+    pin: 
+      number: GPIO22
+  - platform: gpio
+    name: Relay 4
+    id: relay_4
+    pin: 
+      number: GPIO25
+  - platform: gpio
+    name: Relay 5
+    id: relay_5
+    pin: 
+      number: GPIO26
+  - platform: gpio
+    name: Relay 6
+    id: relay_6
+    pin: 
+      number: GPIO27
+  - platform: gpio
+    name: Relay 7
+    id: relay_7
+    pin: 
+      number: GPIO32
+  - platform: gpio
+    name: Relay 8
+    id: relay_8
+    pin: 
+      number: GPIO33
+# Entradas interruptores 1-8
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO2
+      mode:
+        input: true
+        pullup: false
+      inverted: true
+    name: "Entrada 1"
+    id: button_1
+    #on_press: # pulsación ON
+    #on_release: # liberación pulsación 
+    #on_click: # pulsación larga (definir periodo tiempo)
+    #on_double_click  # pulsación doble
+    #on_multi_click # multiples pulsaciones
+    on_state: # cambio de estado
+      then:
+        - switch.toggle: relay_1
+  - platform: gpio
+    pin:
+      number: GPIO12
+      mode:
+        input: true
+        pullup: false
+      inverted: true
+    name: "Entrada 2"
+    id: button_2
+    on_state:
+      then:
+        - switch.toggle: relay_2
+  - platform: gpio
+    pin:
+      number: GPIO13
+      mode:
+        input: true
+        pullup: false
+      inverted: true
+    name: "Entrada 3"
+    id: button_3
+    on_state:
+      then:
+        - switch.toggle: relay_3
+  - platform: gpio
+    pin:
+      number: GPIO14
+      mode:
+        input: true
+        pullup: false
+      inverted: true
+    name: "Entrada 4"
+    id: button_4
+    on_state:
+      then:
+        - switch.toggle: relay_4
+  - platform: gpio
+    pin:
+      number: GPIO15
+      mode:
+        input: true
+        pullup: false
+      inverted: true
+    name: "Entrada 5"
+    id: button_5
+    on_state:
+      then:
+        - switch.toggle: relay_5
+  - platform: gpio
+    pin:
+      number: GPIO16
+      mode:
+        input: true
+        pullup: false
+      inverted: true
+    name: "Entrada 6"
+    id: button_6
+    on_state:
+      then:
+        - switch.toggle: relay_6
+  - platform: gpio
+    pin:
+      number: GPIO34
+      mode:
+        input: true
+        pullup: false
+      inverted: true
+    name: "Entrada 7"
+    id: button_7
+    on_state:
+      then:
+        - switch.toggle: relay_7
+  - platform: gpio
+    pin:
+      number: GPIO35
+      mode:
+        input: true
+        pullup: false
+      inverted: true
+    name: "Entrada 8"
+    id: button_8
+    on_state:
+      then:
+        - switch.toggle: relay_8
+      
+
