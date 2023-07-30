@@ -7,7 +7,7 @@ esphome:
     board_build.flash_mode: dio
     
   project: 
-    name: "smartstuff.eth_dongle_pro"
+    name: "W5500.eth_dongle_pro"
     version: ${prj_version}
 
 esp32:
